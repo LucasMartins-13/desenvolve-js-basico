@@ -10,9 +10,16 @@ function chamaDepois() {
 //chamaDepois()
 
 
-function recebePrimeia(pimeiraFuncao) {
-    primeiraFuncao()
+//function recebePrimeia(pimeiraFuncao) {
+//    primeiraFuncao()
+//}
+
+//recebePrimeira(chamaDepois)
+
+function soma() {
+    let lucas = 95+43
+    var pedro = 18+58
+    console.log(lucas / pedro)
 }
 
-recebePrimeira(chamaDepois)
-
+soma()
