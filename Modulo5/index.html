@@ -1,19 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <title>Temporizador de Contagem Regressiva</title>
+  <style>
+    #temporizador {
+      font-size: 2rem;
+      font-family: Arial, sans-serif;
+      color: #333;
+    }
+  </style>
 </head>
 <body>
-    <div>
-        <div id="Segundos"></div>
-        <div id="Minutos"></div>
-        <div id="Horas"></div>
-        <div id="Dias"></div>
-        <div id="Meses"></div>
-        <div id="Anos"></div>
-    </div>
+  <h1>Contagem Regressiva</h1>
+  <div id="temporizador"></div>
+
+  <script>
+    function calcularTempoRestante(dataFutura) {
+      const agora = new Date();
+      const diferenca = dataFutura - agora;
+
+      if (diferenca <= 0) {
+        return {
+          dias: 0,
+          horas: 0,
+          minutos: 0,
+          segundos: 0
+        };
+      }
+
+      const segundos = Math.floor((diferenca / 1000) % 60);
+      const minutos = Math.floor((diferenca / 1000 / 60) % 60);
+      const horas = Math.floor((diferenca / 1000 / 60 / 60) % 24);
+      const dias = Math.floor(diferenca / 1000 / 60 / 60 / 24);
+
+      return { dias, horas, minutos, segundos };
+    }
+
+    function atualizarTemporizador() {
+      const dataFutura = new Date("2025-12-31T23:59:59"); 
+      const tempo = calcularTempoRestante(dataFutura);
+
+      document.getElementById("temporizador").innerHTML =
+        `${tempo.dias}d ${tempo.horas}h ${tempo.minutos}m ${tempo.segundos}s`;
+    }
+
+    setInterval(atualizarTemporizador, 1000);
+    atualizarTemporizador();
+  </script>
 </body>
-<script src="./ativ1.js"></script>
 </html>

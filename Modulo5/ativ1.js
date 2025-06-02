@@ -1,51 +1,31 @@
-const dataFutura = new Date("2025-05-01T12:00:00"); 
-
 function calcularTempoRestante(dataFutura) {
-  const agora = new Date();
-  const diferenca = dataFutura - agora;
+      const agora = new Date();
+      const diferenca = dataFutura - agora;
 
-  if (diferenca <= 0) {
-    return null; 
-  }
+      if (diferenca <= 0) {
+        return {
+          dias: 0,
+          horas: 0,
+          minutos: 0,
+          segundos: 0
+        };
+      }
 
-  let totalSegundos = diferenca / 1000;
+      const segundos = Math.floor((diferenca / 1000) % 60);
+      const minutos = Math.floor((diferenca / 1000 / 60) % 60);
+      const horas = Math.floor((diferenca / 1000 / 60 / 60) % 24);
+      const dias = Math.floor(diferenca / 1000 / 60 / 60 / 24);
 
-  let dias = (totalSegundos / (60 * 60 * 24)) | 0;
-  totalSegundos = totalSegundos - (dias * 60 * 60 * 24);
+      return { dias, horas, minutos, segundos };
+    }
 
-  let horas = (totalSegundos / (60 * 60)) | 0;
-  totalSegundos = totalSegundos - (horas * 60 * 60);
+    function atualizarTemporizador() {
+      const dataFutura = new Date("2025-12-31T23:59:59"); 
+      const tempo = calcularTempoRestante(dataFutura);
 
-  let minutos = (totalSegundos / 60) | 0;
-  totalSegundos = totalSegundos - (minutos * 60);
+      document.getElementById("temporizador").innerHTML =
+        `${tempo.dias}d ${tempo.horas}h ${tempo.minutos}m ${tempo.segundos}s`;
+    }
 
-  let segundos = totalSegundos | 0;
-
-  return { dias, horas, minutos, segundos };
-}
-
-function atualizarTemporizador() {
-  const tempo = calcularTempoRestante(dataFutura);
-
-  if (!tempo) {
-    clearInterval(intervalo);
-    document.getElementById('Anos').innerText = "Tempo esgotado!";
-    document.getElementById('Meses').innerText = "";
-    document.getElementById('Dias').innerText = "";
-    document.getElementById('Horas').innerText = "";
-    document.getElementById('Minutos').innerText = "";
-    document.getElementById('Segundos').innerText = "";
-    return;
-  }
-
-  document.getElementById('Anos').innerText = `Anos: ${tempo.anos}`;
-  document.getElementById('Meses').innerText = `Meses: ${tempo.meses}`;
-  document.getElementById('Dias').innerText = `Dias: ${tempo.dias}`;
-  document.getElementById('Horas').innerText = `Horas: ${tempo.horas}`;
-  document.getElementById('Minutos').innerText = `Minutos: ${tempo.minutos}`;
-  document.getElementById('Segundos').innerText = `Segundos: ${tempo.segundos}`;
-}
-
-const intervalo = setInterval(atualizarTemporizador, 1000);
-atualizarTemporizador(); 
-
+    setInterval(atualizarTemporizador, 1000);
+    atualizarTemporizador();
