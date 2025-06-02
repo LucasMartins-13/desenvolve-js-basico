@@ -37,8 +37,7 @@ function listarLivros() {
   }
 }
 
-
-
+// Testes rápidos
 adicionarLivro("Dom Casmurro", "Machado de Assis", 2);
 adicionarLivro("1984", "George Orwell", 5);
 listarLivros();
