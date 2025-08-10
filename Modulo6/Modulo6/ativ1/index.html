@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade - Modulo 6</title>
+</head>
+<body>
+    <h1>Java Script - Linguagem de Programação</h1>
+    <ul>
+        <li>JavaScript</li>
+    </ul>
+    <p>Js - JavaScript</p>
+    <button>Ver Mais</button>
+</body>
+    <script src="script.js">
+                document.querySelector("h1").textContent = "Aprendendo JavaScript";
+
+        document.querySelectorAll("ul li").forEach(item => {
+            item.style.color = "blue";
+            item.style.fontSize = "20px";
+            item.style.fontWeight = "bold";
+        });
+
+        document.querySelectorAll("p").forEach(paragrafo => {
+            paragrafo.classList.add("destaque");
+        });
+        document.querySelector("button").textContent = "Clique Aqui";
+    </script>
+</html>
